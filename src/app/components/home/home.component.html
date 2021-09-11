@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="search-bar input-group mx-auto position-relative">
+    <input type="text" class="form-control input-field" placeholder="Search for Photo" [(ngModel)]="key"
+      (keyup.enter)="getPhotos(key)">
+    <span class="input-group-btn">
+      <button class="btn btn-default search-icon" type="submit" (click)="getPhotos(key)">
+        <i class="fas fa-search"></i>
+      </button>
+    </span>
+  </div>
+
+  <div class="row d-flex justify-content-center align-items-center position-relative">
+    <div *ngFor="let photo of photos" class="col-12 col-md-6 col-lg-3">
+      <div class="card m-2">
+        <div class="position-relative">
+          <img class="card-img-top " [src]="photo.urls.regular" alt="Card image cap">
+          <a [href]="photo.links.download" download="">
+            <button class="downloadBtn d-flex justify-content-center align-items-center">
+              <i class="fas fa-arrow-down text-primary"></i>
+            </button>
+          </a>
+        </div>
+        <div class="card-body">
+          <p class="card-text">{{photo.alt_description | titlecase}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
